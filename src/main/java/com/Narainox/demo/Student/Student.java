@@ -1,9 +1,5 @@
 package com.Narainox.demo.Student;
-
 import javax.persistence.*;
-import java.time.LocalDate;
-
-
 @Entity
 @Table
 public class Student {
@@ -14,7 +10,17 @@ public class Student {
 
     private String name;
     private String email;
-    int dob;
+    private int age;
+
+    public Student(long id, String name, String email, int age) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.age = age;
+    }
+
+    public Student() {
+    }
 
     @Override
     public String toString() {
@@ -22,28 +28,13 @@ public class Student {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", dob=" + dob +
                 ", age=" + age +
                 '}';
     }
 
-    private int age;
-
-    public Student() {
-    }
-
-    public Student(long id, String name, String email, int dob, int age) {
-        this.id = id;
+    public Student(String name, String email, int age) {
         this.name = name;
         this.email = email;
-        this.dob = dob;
-        this.age = age;
-    }
-
-    public Student(String name, String email, int dob, int age) {
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
         this.age = age;
     }
 
@@ -69,14 +60,6 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getDob() {
-        return dob;
-    }
-
-    public void setDob(int dob) {
-        this.dob = dob;
     }
 
     public int getAge() {

@@ -16,41 +16,34 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    //Read
     @GetMapping("/getStudent")
     public List<Student> getStudent()
     {
         return studentService.getStudent();
     }
 
-    @GetMapping("/getStudentById/{id}")
-    public Student insertStudentById(@PathVariable("id") long id)
+    //Write
+    @PostMapping("/registerNewStudent")
+    public String registerNewStudent(@RequestBody Student student)
     {
-        return studentService.getStudentById(id);
+        studentService.registerNewStudent(student);
+        return "Register Student successfully";
     }
 
-    @PostMapping("/insertStudent")
-    public Student insertStudent(@Validated @RequestBody Student student)
+    //Delete
+    @DeleteMapping("/deleteStudent/{id}")
+    public String deleteUser(@PathVariable("id") Long id)
     {
-        return studentService.insertStudent(student);
+        studentService.deleteStudent(id);
+        return "Deleted Successfully";
     }
 
-    @DeleteMapping("/deleteAllStudent")
-    public void deleteAllStudent()
+    //update
+    @PutMapping("/updateUser/{id}")
+    public Student UpdateStudent(@RequestBody Student student,
+                                @PathVariable("id") Long id )
     {
-        studentService.deleteAllStudent();
+        return studentService.updateStudent(student,id);
     }
-
-    @DeleteMapping("/deleteStudentById/{id}")
-    public String deleteStudentById(@PathVariable("id") long id)
-    {
-        studentService.deleteStudentById(id);
-        return "Deleted sucessfull";
-    }
-
-    @PostMapping("/updateStudent/{id}")
-    public Student updateStudent(long id)
-    {
-        return studentService.updateStudent(id);
-    }
-
 }
